@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AnnualData } from '../models/AnnualData';
+import { AnnualData } from '../models/annualdata-result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class InvestmentCalculatorService {
     }
   }
 
-  getAnnualDatas(): AnnualData[] {
+  get AnnualDatas(): AnnualData[] {
     return this.annualData;
   }
 }

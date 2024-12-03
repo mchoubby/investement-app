@@ -1,4 +1,4 @@
-export type AnnualData = {
+export interface AnnualData {
     year: number;
     valueEndOfYear: number;
     annualInvestment: number;

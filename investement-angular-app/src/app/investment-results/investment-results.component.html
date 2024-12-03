@@ -1,4 +1,4 @@
-@if(annualData.length>0) {
+@if(results) {
     <table>
         <thead>
             <tr>
@@ -10,7 +10,7 @@
               </tr>
         </thead>
         <tbody>
-            @for(data of annualData; track data) {
+            @for(data of results; track data.year) {
                 <tr>
                     <td>{{ data.year }}</td>
                     <td>{{ data.valueEndOfYear | currency }}</td>
@@ -23,5 +23,5 @@
       </table>
 }
 @else {
-    <h2> Add your investment data !</h2>
+    <h3 class="center"> Add your investment data !</h3>
 }
