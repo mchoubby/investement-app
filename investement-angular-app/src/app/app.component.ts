@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from "./header/header.component";
+import { Component, inject } from '@angular/core';
+import { InvestmentCalculatorService } from './investment-calculator.service';
+import { AnnualData } from '../models/AnnualData';
 import { UserInputComponent } from "./user-input/user-input.component";
 import { InvestmentResultsComponent } from "./investment-results/investment-results.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [UserInputComponent, InvestmentResultsComponent],
 })
 export class AppComponent {
-  title = 'investement-angular-app';
+
+  annualData: AnnualData[] = [];
+  private investmentCalculator = inject(InvestmentCalculatorService);
+  calculateData() {
+    this.annualData = this.investmentCalculator.getAnnualDatas();
+  }
 }

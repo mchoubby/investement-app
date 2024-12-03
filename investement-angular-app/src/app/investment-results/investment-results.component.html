@@ -1,1 +1,27 @@
-<p>investment-results works!</p>
+@if(annualData.length>0) {
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+              </tr>
+        </thead>
+        <tbody>
+            @for(data of annualData; track data) {
+                <tr>
+                    <td>{{ data.year }}</td>
+                    <td>{{ data.valueEndOfYear | currency }}</td>
+                    <td>{{ data.interest  | currency }}</td>
+                    <td>{{ data.totalInterest  | currency }}</td>
+                    <td>{{ data.totalAmountInvested  | currency }}</td>
+                  </tr>
+            }
+        </tbody>
+      </table>
+}
+@else {
+    <h2> Add your investment data !</h2>
+}

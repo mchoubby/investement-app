@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InvestmentCalculatorService } from '../investment-calculator.service';
 
 @Component({
   selector: 'app-user-input',
@@ -9,16 +10,21 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-
-  inital_investement: number = 0;
-  annual_investement: number = 0;
+  initial_investment: number = 0;
+  annual_investment: number = 0;
   expected_return: number = 0;
   duration: number = 0;
 
-  onSubmit() {
-    console.log("inital_investement" + this.inital_investement);
-    console.log("annual_investement" + this.annual_investement);
-    console.log("expected_return" + this.expected_return);
-    console.log("duration" + this.duration)
+  @Output() calculate = new EventEmitter<void>();
+
+  private investmentCalculator = inject(InvestmentCalculatorService);
+
+  onsubmit() {
+    console.log(`initial-investment: ${this.initial_investment}`);
+    console.log(` annual-investment: ${this. annual_investment}`);
+    console.log(`expected-return: ${this.expected_return}`);
+    console.log(`duration: ${this.duration}`);
+    this.investmentCalculator.calculateInvestment(this.initial_investment, this. annual_investment, this.expected_return, this.duration);
+    this.calculate.emit();
   }
 }
